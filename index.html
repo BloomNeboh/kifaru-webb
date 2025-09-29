@@ -1,108 +1,111 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KIFARU TRAILS — Where the Wild Leads You</title>
-<meta name="description" content="Premium Tanzanian safaris, Kilimanjaro treks, Zanzibar escapes with Kifaru Trails.">
-<style>
-  /* ---------- VARIABLES ---------- */
-  :root{
-    --green-600:#2f5f3a;
-    --green-800:#18321f;
-    --orange-500:#d67b28;
-    --sand:#f6efe0;
-    --muted:#5f6b63;
-    --glass: rgba(255,255,255,0.06);
-    --radius:14px;
-    --transition:300ms cubic-bezier(.2,.9,.25,1);
-    --text:#10221a;
-    --bg:#fbfaf6;
-  }
-  html,body{margin:0;padding:0;font-family:Inter,system-ui,Arial,sans-serif;scroll-behavior:smooth;background:var(--bg);color:var(--text);}
-  a{color:inherit;text-decoration:none;}
-  img{max-width:100%;border-radius:12px;display:block;}
-  button{cursor:pointer;transition:all 0.3s;}
-  main{max-width:1200px;margin:0 auto;padding:20px;}
-  h1,h2,h3{margin:0;padding:0;}
-  
-  /* ---------- HEADER ---------- */
-  header{position:sticky;top:0;background:linear-gradient(180deg,rgba(255,255,255,0.85),rgba(255,255,255,0.6));backdrop-filter:blur(6px);display:flex;justify-content:space-between;align-items:center;padding:12px 20px;z-index:50;}
-  .brand{display:flex;align-items:center;gap:12px;}
-  .logo{width:56px;height:56px;background:var(--green-600);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;border-radius:12px;}
-  nav ul{list-style:none;display:flex;gap:16px;align-items:center;margin:0;padding:0;}
-  nav a,nav button{padding:8px 10px;border-radius:8px;font-weight:600;}
-  nav a:hover, nav button:hover{background:rgba(0,0,0,0.05);}
-  
-  /* ---------- HERO ---------- */
-  .hero{position:relative;height:80vh;display:flex;align-items:center;justify-content:center;background:url('https://source.unsplash.com/1600x800/?safari,animals') center/cover no-repeat;overflow:hidden;color:#fff;text-align:center;}
-  .hero h1{font-size:4rem;text-shadow:0 4px 8px rgba(0,0,0,0.4);}
-  .hero p{font-size:1.5rem;margin-top:12px;text-shadow:0 2px 6px rgba(0,0,0,0.4);}
-  .hero .cta-row{margin-top:20px;display:flex;gap:16px;justify-content:center;}
-  .btn{padding:12px 20px;border-radius:12px;font-weight:700;border:none;}
-  .btn.primary{background:var(--green-600);color:#fff;}
-  .btn.secondary{background:transparent;border:2px solid #fff;color:#fff;}
-  .btn:hover{opacity:0.85;}
-  
-  /* ---------- WAVES ---------- */
-  .wave-wrap{position:fixed;bottom:0;left:0;right:0;height:160px;pointer-events:none;overflow:hidden;z-index:30;}
-  .wave{position:absolute;bottom:-60px;left:0;right:0;height:220px;background:linear-gradient(180deg,var(--green-800),transparent);transform:translateY(120%);border-top-left-radius:60% 60px;border-top-right-radius:60% 60px;animation:waveMove 10s infinite alternate;}
-  .wave.layer2{opacity:0.6;animation-duration:8s;}
-  .wave.layer3{opacity:0.3;animation-duration:12s;}
-  @keyframes waveMove{0%{transform:translateY(120%) translateX(0)}50%{transform:translateY(115%) translateX(20px)}100%{transform:translateY(120%) translateX(0)}}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KIFARU TRAILS — Where the Wild Leads You</title>
+  <meta name="description" content="Kifaru Trails — premium Tanzanian safaris, culture tours, Kilimanjaro treks and Zanzibar escapes.">
+  <meta name="theme-color" content="#213d29">
+  <style>
+    /* ---------- VARIABLES ---------- */
+    :root{
+      --green-600:#2f5f3a;
+      --green-800:#18321f;
+      --orange-500:#d67b28;
+      --sand:#f6efe0;
+      --muted:#5f6b63;
+      --glass: rgba(255,255,255,0.06);
+      --max-w:1200px;
+      --radius:14px;
+      --transition:300ms cubic-bezier(.2,.9,.25,1);
+      --text:#10221a;
+      --bg:#fbfaf6;
+    }
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased;scroll-behavior:smooth;}
+    a{color:inherit;text-decoration:none;}
+    img{max-width:100%;display:block;border-radius:8px;}
+    main{max-width:var(--max-w);margin:0 auto;padding:28px}
+    .container{width:100%;max-width:var(--max-w);margin:0 auto;padding:0 20px}
 
-  /* ---------- TOURS ---------- */
-  section{padding:60px 20px;}
-  #tours h2{font-size:2.5rem;margin-bottom:20px;text-align:center;}
-  #tourCards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
-  .card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 18px 40px rgba(16,24,32,0.08);transition:transform 0.3s, box-shadow 0.3s;cursor:pointer;}
-  .card:hover{transform:translateY(-6px);box-shadow:0 36px 80px rgba(16,24,32,0.12);}
-  .card .thumb{height:200px;background-size:cover;background-position:center;}
-  .card .meta{padding:16px;}
-  .card h3{font-size:1.5rem;margin-bottom:8px;}
-  .card p{color:#5f6b63;font-size:0.95rem;margin-bottom:12px;}
-  .card .read{display:inline-block;padding:8px 12px;background:var(--green-600);color:#fff;border-radius:8px;font-weight:600;}
+    /* ---------- HEADER / NAV ---------- */
+    header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(255,255,255,0.85),rgba(255,255,255,0.6));backdrop-filter: blur(6px);display:flex;align-items:center;justify-content:space-between;padding:14px 20px;gap:12px;transition:background 0.3s}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:10px;background:var(--green-600);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-family:Georgia;cursor:pointer}
+    nav ul{display:flex;gap:16px;align-items:center;list-style:none;margin:0;padding:0}
+    nav a{padding:8px 10px;border-radius:8px;display:inline-block;font-weight:600;transition:0.2s}
+    nav a:hover{background:rgba(0,0,0,0.04)}
 
-  /* ---------- SECTION BACKGROUNDS ---------- */
-  #tour1{background:url('https://source.unsplash.com/1600x400/?kilimanjaro,ice') center/cover no-repeat;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,0.6);}
-  #tour2{background:url('https://source.unsplash.com/1600x400/?lion,mane') center/cover no-repeat;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,0.6);}
-  #tour3{background:url('https://source.unsplash.com/1600x400/?leopard,spots') center/cover no-repeat;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,0.6);}
-  #tour4{background:url('https://source.unsplash.com/1600x400/?zebra,pattern') center/cover no-repeat;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,0.6);}
-  #tour5{background:url('https://source.unsplash.com/1600x400/?serengeti,grassland') center/cover no-repeat;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,0.6);}
-  
-  /* ---------- MODALS ---------- */
-  .modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:400;}
-  .modal .panel{background:#fff;border-radius:16px;padding:20px;max-width:900px;width:90%;max-height:90vh;overflow-y:auto;}
-  .closeBtn{float:right;font-size:1.5rem;cursor:pointer;font-weight:bold;}
+    /* ---------- HERO ---------- */
+    .hero{display:grid;grid-template-columns:1fr;gap:20px;padding:28px;border-radius:16px;overflow:hidden;position:relative}
+    .hero-visual{position:relative;border-radius:12px;overflow:hidden;box-shadow:0 30px 60px rgba(16,24,32,0.12)}
+    .hero-visual::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.12),rgba(0,0,0,0.06))}
+    .hero-inner{position:absolute;left:32px;bottom:32px;color:#fff;z-index:4;max-width:720px}
+    .hero h1{font-family:Georgia,serif;font-size:44px;margin:0 0 8px;line-height:1.02}
+    .hero p{margin:0 0 14px;color:rgba(255,255,255,0.93);font-size:17px}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{padding:10px 16px;border-radius:10px;border:none;cursor:pointer;font-weight:700;transition:all var(--transition)}
+    .btn.primary{background:var(--green-600);color:#fff}
+    .btn.secondary{background:transparent;border:2px solid rgba(255,255,255,0.16);color:#fff}
 
-  /* ---------- NYOTA ---------- */
-  .nyota{position:fixed;bottom:20px;right:20px;width:340px;background:rgba(255,255,255,0.95);border-radius:20px;padding:14px;box-shadow:0 18px 40px rgba(0,0,0,0.2);z-index:500;transition:0.3s;}
-  .nyota:hover .star{transform:rotate(360deg);box-shadow:0 0 20px #ffd700;}
-  .nyota .top{display:flex;gap:12px;align-items:center;}
-  .nyota .avatar{width:50px;height:50px;background:var(--green-600);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;position:relative;}
-  .nyota .avatar .star{position:absolute;top:-6px;right:-6px;width:14px;height:14px;background:gold;border-radius:50%;box-shadow:0 0 10px gold;transition:all 0.5s;}
-  .nyota .actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
-  .nyota button{padding:6px 10px;border-radius:8px;border:none;background:var(--orange-500);color:#fff;font-weight:600;}
-  .nyota .transcript{margin-top:8px;font-size:13px;color:#5f6b63;max-height:100px;overflow-y:auto;}
-  
-  /* ---------- CONTACT ---------- */
-  #contact{background:#213d29;color:#fff;padding:60px 20px;text-align:center;}
-  #contact h2{font-size:2.5rem;margin-bottom:20px;}
-  .contact-icons{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:20px;}
-  .contact-icons a{display:flex;align-items:center;justify-content:center;width:60px;height:60px;background:rgba(255,255,255,0.1);border-radius:50%;font-size:1.5rem;color:#fff;transition:0.3s;}
-  .contact-icons a:hover{background:var(--orange-500);transform:scale(1.2);color:#fff;}
-  
-</style>
+    /* ---------- SECTIONS ---------- */
+    section{padding:44px 0;border-bottom:1px solid rgba(0,0,0,0.04)}
+    h2{font-size:26px;margin:0 0 12px}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+    .lead{color:var(--muted);font-size:15px;line-height:1.6}
+
+    /* ---------- CARDS / TOURS ---------- */
+    .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:12px}
+    .card{border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 18px 40px rgba(16,24,32,0.06);display:flex;flex-direction:column;transition:transform 420ms var(--transition),box-shadow 420ms var(--transition),filter 0.4s}
+    .card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 36px 80px rgba(16,24,32,0.12);filter:brightness(1.08)}
+    .card .thumb{height:160px;background-size:cover;background-position:center}
+    .card .meta{padding:14px}
+    .card h3{margin:0 0 8px;font-size:18px}
+    .card p{margin:0 0 12px;color:var(--muted);font-size:14px}
+    .card .read{display:inline-block;padding:8px 12px;border-radius:8px;background:var(--green-600);color:#fff;font-weight:700;text-decoration:none}
+
+    /* ---------- WHY CHOOSE ---------- */
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .why-box{background:linear-gradient(180deg,#fff,#fbfaf5);padding:20px;border-radius:12px;text-align:center;box-shadow:0 12px 30px rgba(16,24,32,0.06)}
+    .why-box .icon{font-size:28px;margin-bottom:8px}
+
+    /* ---------- TESTIMONIALS ---------- */
+    .carousel{display:flex;gap:12px;overflow:hidden;padding-top:8px}
+    .quote{min-width:280px;padding:18px;border-radius:12px;background:linear-gradient(180deg,#fff,#f9f8f3);box-shadow:0 12px 30px rgba(16,24,32,0.06)}
+
+    /* ---------- CTA STRIP ---------- */
+    .cta-strip{border-radius:12px;padding:26px;background-image:linear-gradient(120deg,var(--green-800),#0b2616);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .cta-strip h3{margin:0;font-size:22px}
+
+    /* ---------- FOOTER ---------- */
+    footer{padding:28px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:linear-gradient(180deg,#0b1a12, #07120b);color:#fff;border-radius:12px;margin-top:28px}
+
+    /* ---------- MODAL ---------- */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.45);z-index:400}
+    .modal .panel{background:#fff;padding:18px;border-radius:12px;max-width:900px;width:94%;max-height:86vh;overflow:auto;box-shadow:0 50px 120px rgba(0,0,0,0.5)}
+
+    /* ---------- NYOTA WIDGET ---------- */
+    .nyota{position:fixed;right:20px;bottom:20px;background:linear-gradient(180deg,#fff,#f8f6f2);border-radius:16px;padding:12px;box-shadow:0 18px 40px rgba(0,0,0,0.18);width:320px;max-width:92vw;z-index:500;transition:transform 0.3s}
+    .nyota:hover{transform:rotate(8deg) scale(1.02)}
+    .nyota .top{display:flex;gap:12px;align-items:center}
+    .nyota .avatar{width:48px;height:48px;border-radius:50%;background:gold;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;box-shadow:0 0 12px gold, 0 0 24px gold;animation:glow 1.8s infinite alternate}
+    @keyframes glow{0%{box-shadow:0 0 8px gold,0 0 16px gold;}100%{box-shadow:0 0 20px gold,0 0 40px gold;}}
+    .nyota .actions{display:flex;gap:8px;margin-top:10px}
+    .nyota .transcript{margin-top:8px;color:var(--muted);font-size:13px}
+
+    /* ---------- THEME WAVE ---------- */
+    .wave-wrap{position:fixed;inset:auto 0 0 0;height:140px;pointer-events:none;z-index:30;overflow:hidden}
+    .wave{position:absolute;bottom:-60px;left:0;right:0;height:220px;background:linear-gradient(180deg,var(--green-800),transparent);transform:translateY(0);animation:waveAnim 8s ease-in-out infinite alternate;}
+    @keyframes waveAnim{0%{transform:translateY(0);}50%{transform:translateY(8px);}100%{transform:translateY(0);}}
+
+    /* ---------- CONTACT ICONS ---------- */
+    .contact-icons{display:flex;gap:16px;margin-top:12px}
+    .contact-icons a{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--green-600);color:#fff;transition:0.3s;position:relative}
+    .contact-icons a:hover{transform:scale(1.12);box-shadow:0 0 12px var(--green-600)}
+  </style>
 </head>
 <body>
 
-<!-- WAVES -->
-<div class="wave-wrap">
-  <div class="wave layer1"></div>
-  <div class="wave layer2"></div>
-  <div class="wave layer3"></div>
-</div>
-
+<!-- HEADER -->
 <header>
   <div class="brand">
     <div class="logo">KT</div>
@@ -110,133 +113,178 @@
   </div>
   <nav>
     <ul>
+      <li><a href="#hero">Home</a></li>
       <li><a href="#tours">Tours</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li><button onclick="toggleTheme()">🌙</button></li>
     </ul>
   </nav>
 </header>
 
-<main>
-  <section class="hero">
-    <div>
-      <h1>Where the Wild Leads You</h1>
-      <p>Premium Tanzanian Safaris, Kilimanjaro Treks, and Zanzibar Escapes</p>
-      <div class="cta-row">
-        <button class="btn primary" onclick="openModal('tour1')">Book Now</button>
-        <button class="btn secondary">Explore Tours</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- TOUR CARDS -->
-  <section id="tours">
-    <h2>Our Tours</h2>
-    <div id="tourCards">
-      <div class="card" onclick="openModal('tour1')">
-        <div class="thumb" style="background-image:url('https://source.unsplash.com/400x250/?kilimanjaro');"></div>
-        <div class="meta">
-          <h3>Kilimanjaro Trek</h3>
-          <p>Conquer Africa’s highest peak in 7 days. Includes full guide, tents, meals.</p>
-        </div>
-      </div>
-      <div class="card" onclick="openModal('tour2')">
-        <div class="thumb" style="background-image:url('https://source.unsplash.com/400x250/?lion');"></div>
-        <div class="meta">
-          <h3>Serengeti Safari</h3>
-          <p>5 days guided safari spotting lions, cheetahs, and wildebeest migration.</p>
-        </div>
-      </div>
-      <div class="card" onclick="openModal('tour3')">
-        <div class="thumb" style="background-image:url('https://source.unsplash.com/400x250/?leopard');"></div>
-        <div class="meta">
-          <h3>Ngorongoro Crater</h3>
-          <p>3 days tour exploring the UNESCO crater, rich wildlife & stunning views.</p>
-        </div>
-      </div>
-      <div class="card" onclick="openModal('tour4')">
-        <div class="thumb" style="background-image:url('https://source.unsplash.com/400x250/?zebra');"></div>
-        <div class="meta">
-          <h3>Zanzibar Escape</h3>
-          <p>Relax on pristine beaches, explore Stone Town & spice plantations for 4 days.</p>
-        </div>
-      </div>
-      <div class="card" onclick="openModal('tour5')">
-        <div class="thumb" style="background-image:url('https://source.unsplash.com/400x250/?serengeti,grassland');"></div>
-        <div class="meta">
-          <h3>Wildlife Explorer</h3>
-          <p>7-day safari covering Tarangire, Manyara, Serengeti & Ngorongoro with guides & meals.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MODALS FOR ITINERARIES -->
-  <div class="modal" id="tour1">
-    <div class="panel">
-      <span class="closeBtn" onclick="closeModal('tour1')">&times;</span>
-      <h2>Kilimanjaro Trek - 7 Days</h2>
-      <p><strong>Total Price:</strong> $1,950 per person (Full Board, Guide, Tents)</p>
-      <ol>
-        <li>Day 1: Arrival in Arusha, briefing, overnight hotel.</li>
-        <li>Day 2: Drive to Machame Gate, start trek, overnight camp.</li>
-        <li>Day 3-5: Trekking across Machame and Shira routes.</li>
-        <li>Day 6: Summit Day - Uhuru Peak, descend to Mweka camp.</li>
-        <li>Day 7: Descend, transfer to Arusha, farewell dinner.</li>
-      </ol>
+<!-- HERO -->
+<section class="hero" id="hero" style="background-image:url('https://images.unsplash.com/photo-1598514983772-bfedbf45f158?crop=entropy&cs=tinysrgb&fit=max&w=1200');background-size:cover;">
+  <div class="hero-inner">
+    <h1>Where the Wild Leads You</h1>
+    <p>Premium Tanzanian safaris, Kilimanjaro treks, and Zanzibar escapes. Explore wildlife, culture, and adventure like never before.</p>
+    <div class="cta-row">
+      <button class="btn primary" onclick="document.getElementById('tours').scrollIntoView({behavior:'smooth'})">Explore Tours</button>
+      <button class="btn secondary" onclick="nyotaSpeak('Hello traveler! Ready for an adventure?')">Chat with Nyota</button>
     </div>
   </div>
-  
-  <!-- Repeat similar modals for tour2-tour5 -->
-  
-  <!-- NYOTA AI -->
-  <div class="nyota">
-    <div class="top">
-      <div class="avatar">N<div class="star"></div></div>
-      <div>
-        <strong>Nyota AI</strong>
-        <p class="transcript">Ask me about tours, prices, and I tell jokes too! 🇹🇿</p>
+</section>
+
+<!-- TOURS -->
+<section id="tours">
+  <h2>Our Top Tours</h2>
+  <div class="cards">
+
+    <!-- TOUR CARD 1 -->
+    <div class="card" onclick="openModal('tarangire')">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1598379943797-0f9d4b037d62?crop=entropy&cs=tinysrgb&fit=max&w=600');"></div>
+      <div class="meta">
+        <h3>Tarangire Safari</h3>
+        <p>5 Days Wildlife Safari in Tarangire National Park</p>
+        <a class="read">View Details</a>
       </div>
     </div>
-    <div class="actions">
-      <button onclick="nyotaTalk('Kilimanjaro Trek')">Kilimanjaro</button>
-      <button onclick="nyotaTalk('Serengeti Safari')">Serengeti</button>
-      <button onclick="nyotaTalk('Ngorongoro Crater')">Ngorongoro</button>
-      <button onclick="nyotaTalk('Zanzibar Escape')">Zanzibar</button>
-      <button onclick="nyotaTalk('Wildlife Explorer')">Explorer</button>
-    </div>
-  </div>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>Reach out for bookings or inquiries!</p>
-    <div class="contact-icons">
-      <a href="https://wa.me/255..." target="_blank">📱</a>
-      <a href="tel:+255..." target="_blank">📞</a>
-      <a href="https://facebook.com/..." target="_blank">📘</a>
-      <a href="https://instagram.com/..." target="_blank">📸</a>
+    <!-- TOUR CARD 2 -->
+    <div class="card" onclick="openModal('serengeti')">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1592194996308-7b43878e84a6?crop=entropy&cs=tinysrgb&fit=max&w=600');"></div>
+      <div class="meta">
+        <h3>Serengeti Adventure</h3>
+        <p>4 Days Luxury Safari with Hot Air Balloon</p>
+        <a class="read">View Details</a>
+      </div>
     </div>
-  </section>
-</main>
+
+    <!-- TOUR CARD 3 -->
+    <div class="card" onclick="openModal('ngorongoro')">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1603306810305-4c0217d2d3e3?crop=entropy&cs=tinysrgb&fit=max&w=600');"></div>
+      <div class="meta">
+        <h3>Ngorongoro Crater</h3>
+        <p>3 Days Excursion in the Crater and Maasai Culture</p>
+        <a class="read">View Details</a>
+      </div>
+    </div>
+
+    <!-- TOUR CARD 4 -->
+    <div class="card" onclick="openModal('kili')">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1585274586117-273f0f784cd0?crop=entropy&cs=tinysrgb&fit=max&w=600');"></div>
+      <div class="meta">
+        <h3>Kilimanjaro Trek</h3>
+        <p>7 Days Summit Trek via Machame Route</p>
+        <a class="read">View Details</a>
+      </div>
+    </div>
+
+    <!-- TOUR CARD 5 -->
+    <div class="card" onclick="openModal('zanzibar')">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1549893075-c9d42d10dcab?crop=entropy&cs=tinysrgb&fit=max&w=600');"></div>
+      <div class="meta">
+        <h3>Zanzibar Escape</h3>
+        <p>5 Days Beach & Spice Tour in Unguja</p>
+        <a class="read">View Details</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="panel" id="modalContent"></div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p>Get in touch for bookings, inquiries, or personalized itineraries.</p>
+  <div class="contact-icons">
+    <a href="https://wa.me/255700000000" target="_blank" title="WhatsApp">📱</a>
+    <a href="tel:+255700000000" title="Call">📞</a>
+    <a href="https://www.facebook.com/kifarutrails" target="_blank" title="Facebook">📘</a>
+    <a href="https://www.instagram.com/kifarutrails" target="_blank" title="Instagram">📸</a>
+  </div>
+</section>
+
+<!-- NYOTA WIDGET -->
+<div class="nyota" id="nyota">
+  <div class="top">
+    <div class="avatar">⭐</div>
+    <div>Nyota AI</div>
+  </div>
+  <div class="actions">
+    <button onclick="nyotaSpeak('Hey there! Are you ready for a Tanzanian adventure?')">Talk</button>
+    <button onclick="nyotaSpeak('Here’s a joke: Why don’t lions play cards in the savannah? Too many cheetahs! 😆')">Joke</button>
+  </div>
+  <div class="transcript" id="transcript">Say hello to Nyota!</div>
+</div>
+
+<!-- WAVES -->
+<div class="wave-wrap">
+  <div class="wave"></div>
+</div>
+
+<footer>
+  <span>© 2025 KIFARU TRAILS. All rights reserved.</span>
+  <span>Follow us: <a href="https://www.instagram.com/kifarutrails" target="_blank">Instagram</a></span>
+</footer>
 
 <script>
-  function toggleTheme(){document.body.classList.toggle('dark');}
-  
-  // MODAL FUNCTIONS
-  function openModal(id){document.getElementById(id).style.display='flex';}
-  function closeModal(id){document.getElementById(id).style.display='none';}
-  
-  // NYOTA AI INTERACTION
-  function nyotaTalk(tour){
-    const jokes = [
-      "Why don’t lions play cards? Because there are too many cheetahs!",
-      "Why did the zebra cross the road? To show off its stripes!",
-      "Mount Kilimanjaro told me it loves visitors. I said 'me too!'"
-    ];
-    const joke = jokes[Math.floor(Math.random()*jokes.length)];
-    const transcript = document.querySelector('.nyota .transcript');
-    transcript.innerText = `Hi! I recommend our ${tour} tour. Also, here's a joke: ${joke}`;
+  // MODAL LOGIC
+  function openModal(tour){
+    const modal = document.getElementById('modal');
+    const content = document.getElementById('modalContent');
+    let html = '';
+    if(tour==='tarangire'){
+      html=`<h3>Tarangire Safari — 5 Days</h3>
+      <p>Day 1: Arrival & Transfer — $360</p>
+      <p>Day 2: Tarangire Safari Game Drive — $360</p>
+      <p>Day 3: Cultural Visit & Safari — $360</p>
+      <p>Day 4: Safari & Sunset Photography — $360</p>
+      <p>Day 5: Departure — $360</p>
+      <p><strong>Total Price: $1800 per person</strong></p>`;
+    }else if(tour==='serengeti'){
+      html=`<h3>Serengeti Adventure — 4 Days</h3>
+      <p>Day 1: Arrival & Lodge — $280</p>
+      <p>Day 2: Safari & Hot Air Balloon — $280 + $450 balloon</p>
+      <p>Day 3: Full Day Safari — $280</p>
+      <p>Day 4: Departure — $280</p>
+      <p><strong>Total Price: $1290 per person (balloon optional)</strong></p>`;
+    }else if(tour==='ngorongoro'){
+      html=`<h3>Ngorongoro Crater — 3 Days</h3>
+      <p>Day 1: Arrival & Cultural Visit — $200</p>
+      <p>Day 2: Crater Safari — $200</p>
+      <p>Day 3: Departure — $200</p>
+      <p><strong>Total Price: $600 per person</strong></p>`;
+    }else if(tour==='kili'){
+      html=`<h3>Kilimanjaro Trek — 7 Days</h3>
+      <p>Day 1-6: Trek Machame Route — $1200</p>
+      <p>Day 7: Summit & Descend — Included</p>
+      <p><strong>Total Price: $1200 per person</strong></p>`;
+    }else if(tour==='zanzibar'){
+      html=`<h3>Zanzibar Escape — 5 Days</h3>
+      <p>Day 1: Arrival & Stone Town — $150</p>
+      <p>Day 2: Spice Tour & Beach — $150</p>
+      <p>Day 3: Island Exploration — $150</p>
+      <p>Day 4: Beach Leisure — $150</p>
+      <p>Day 5: Departure — $150</p>
+      <p><strong>Total Price: $750 per person</strong></p>`;
+    }
+    content.innerHTML=html+'<button onclick="closeModal()">Close</button>';
+    modal.style.display='flex';
+  }
+  function closeModal(){document.getElementById('modal').style.display='none'}
+
+  // NYOTA SPEECH
+  function nyotaSpeak(message){
+    const transcript = document.getElementById('transcript');
+    transcript.innerText = message;
+    if(window.speechSynthesis){
+      let utter = new SpeechSynthesisUtterance(message);
+      utter.lang='en-TZ';
+      window.speechSynthesis.speak(utter);
+    }
   }
 </script>
 </body>
